@@ -293,7 +293,7 @@
             var _this = this;
 
             // window.setInterval(function () {
-                _this.getMaintains();
+                // _this.getMaintains();
             //     setTimeout(() => {
             //         if (!_this.dialogVisible) {
             //             _this.dialogVisible = true;

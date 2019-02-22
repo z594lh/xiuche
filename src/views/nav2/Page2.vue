@@ -167,9 +167,9 @@
         </el-dialog>
 
         <!--新增界面-->
-        <el-dialog title="新增维护计划" v-model="addFormVisible" :close-on-click-modal="false">
+        <el-dialog title="新增类别" v-model="addFormVisible" :close-on-click-modal="false">
             <el-form ref="addForm" :model="addForm" label-width="100px" :rules="addFormRules">
-                <el-row>
+                <!-- <el-row>
                     <el-col :xs="12" :sm="12" :md="12" :lg="12">
                         <el-form-item label="维护项ID" prop="strMaintainId" style="width: 292px;">
                             <el-input v-model="addForm.strMaintainId" auto-complete="off"></el-input>
@@ -237,7 +237,22 @@
                 </el-form-item>
                 <el-form-item label="设备ID" prop="equipmentId" style="width: 292px;">
                     <el-input v-model="addForm.equipmentId" auto-complete="off"></el-input>
+                </el-form-item> -->
+                 <el-form-item label="父类">
+                    <el-select v-model="form.deviceNo" placeholder="全部">
+                        <!--<el-option label="全部" value="all"></el-option>-->
+                        <!--<el-option label="蓄电池一" value="1"></el-option>-->
+                        <!--<el-option label="蓄电池二" value="2"></el-option>-->
+                        <el-option v-for="item in form.deviceNoItems" :key="item" v-bind:value="item.value">{{item.text}}</el-option>
+                    </el-select>
+                    <p>已选:{{form.deviceNo}}</p>
                 </el-form-item>
+                <el-form-item label="类别名称" prop="articleCategoryName" style="width: 292px;">
+                    <el-input v-model="addForm.articleCategoryName" auto-complete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="备注" prop="remark" style="width: 292px;">
+                    <el-input v-model="addForm.remark" auto-complete="off"></el-input>
+                </el-form-item> 
             </el-form>
             <div slot="footer" class="dialog-footer">
                 <el-button @click.native="addFormVisible = false">取消</el-button>
@@ -250,7 +265,7 @@
 <script>
     import util from '../../common/js/util'
     //import NProgress from 'nprogress'
-    import {getPlanListPage, removePlan, batchRemovePlan, editPlan, addPlan} from '../../api/api';
+    import {addCategory,categoryList,getPlanListPage, removePlan, batchRemovePlan, editPlan, addPlan} from '../../api/api';
 
     export default {
         data() {
@@ -526,20 +541,44 @@
             },
             //获取维护计划列表
             getPlans() {
+                // let para = {};
+                // para['pageParam']['currentPage'] = 1;
+                // para['pageParam']['pageSize'] = 10;
+                // para = JSON.parse(para);
+                let pc_token = sessionStorage.getItem('pc_token');
+                console.log(pc_token);
+                let header = {
+                        headers: {'Content-Type':'application/json'}
+                    }
                 let para = {
-                    curPage: this.listQuery.curPage,
-                    pageSize: this.listQuery.pageSize,
-                    executeTime: this.filters.executeTime,
-                    isCycle: this.filters.isCycle
-                };
-                this.listLoading = true;
-                //NProgress.start();
-                getPlanListPage(para).then((res) => {
-                    this.total = res.data.total;
-                    this.plans = res.data.plans;
-                    this.listLoading = false;
-                    //NProgress.done();
+                        articleCategoryName: "维修",
+                        pageParam: {
+                            currentPage: 1,
+                            pageSize: 10
+                        },
+                        parentId: 1
+                    }
+
+                categoryList(para).then((res) => {
+                    console.log(JSON.stringify(res.data));
                 });
+                
+
+
+                // let para = {
+                //     curPage: this.listQuery.curPage,
+                //     pageSize: this.listQuery.pageSize,
+                //     executeTime: this.filters.executeTime,
+                //     isCycle: this.filters.isCycle
+                // };
+                // this.listLoading = true;
+                // //NProgress.start();
+                // getPlanListPage(para).then((res) => {
+                //     this.total = res.data.total;
+                //     this.plans = res.data.plans;
+                //     this.listLoading = false;
+                //     //NProgress.done();
+                // });
             },
             //删除
             handleDel: function (index, row) {
@@ -613,17 +652,18 @@
                             this.addLoading = true;
                             //NProgress.start();
                             let para = Object.assign({}, this.addForm);
-                            addPlan(para).then((res) => {
-                                this.addLoading = false;
-                                //NProgress.done();
-                                this.$message({
-                                    message: '提交成功',
-                                    type: 'success'
-                                });
-                                this.$refs['addForm'].resetFields();
-                                this.addFormVisible = false;
-                                this.getPlans();
-                            });
+                            console.log(para);
+                            // addCategory(para).then((res) => {
+                            //     this.addLoading = false;
+                            //     //NProgress.done();
+                            //     this.$message({
+                            //         message: '提交成功',
+                            //         type: 'success'
+                            //     });
+                            //     this.$refs['addForm'].resetFields();
+                            //     this.addFormVisible = false;
+                            //     this.getPlans();
+                            // });
                         });
                     }
                 });

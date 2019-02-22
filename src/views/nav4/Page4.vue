@@ -473,7 +473,7 @@
             }
         },
         mounted() {
-            this.getUsers();
+            // this.getUsers();
         }
     }
 

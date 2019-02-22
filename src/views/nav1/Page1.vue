@@ -436,7 +436,7 @@
             }
         },
         mounted() {
-            this.getMaintains();
+            // this.getMaintains();
         }
     }
 

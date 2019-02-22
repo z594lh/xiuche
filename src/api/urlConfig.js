@@ -4,7 +4,7 @@
 
 const base = ''
 // const base = '/api'
-
+const base2 = 'https://dev.juqiangh.top';
 export const login = base + '/login';
 
 export const userList = base + '/user/list';
@@ -58,3 +58,7 @@ export const planBatchremove = base + '/plan/batchremove';
 export const planEdit = base + '/plan/edit';
 
 export const planAdd = base + '/plan/add';
+/*我的配置-------------------------------------------------------------------------------------- */
+export const login2 = base2 + '/pc/login';
+export const category = base2 + '/pc/article/category/list';
+export const addcategory = base2 + '/pc/article/category/info';

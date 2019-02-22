@@ -354,7 +354,7 @@
             }
         },
         mounted() {
-            this.getPlans();
+            // this.getPlans();
         }
     }
 

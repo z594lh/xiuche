@@ -16,7 +16,8 @@
 </template>
 
 <script>
-  import { requestLogin } from '../api/api';
+  import { requestLogin,requestLogin2 } from '../api/api';
+  import { LoginUsers} from '../mock/data/db.js';
   import NProgress from 'nprogress'
   export default {
     data() {
@@ -50,20 +51,39 @@
             //_this.$router.replace('/table');
             this.logining = true;
             NProgress.start();
-            var loginParams = { username: this.ruleForm2.account, password: this.ruleForm2.checkPass };
-            requestLogin(loginParams).then(data => {
+            // var loginParams = { username: this.ruleForm2.account, password: this.ruleForm2.checkPass };
+            var loginParams = {
+                loginType: 1,
+                password: "123456",
+                phoneNumber: "18296154764",
+                verificationCode: "123123"
+            }
+            requestLogin2(loginParams).then(data => {
               this.logining = false;
               NProgress.done();
-              let { msg, code, user } = data;
-              if (code !== 200) {
-                this.$message({
+              console.log(data.statusCode);
+              if(data.statusCode!=200){
+                 this.$message({
                   message: msg,
                   type: 'error'
                 });
-              } else {
-                  sessionStorage.setItem('user', JSON.stringify(user));
-                this.$router.push({ path: '/page1' });
+              }else{
+                console.log(JSON.stringify(LoginUsers[0]));
+                sessionStorage.setItem('user', JSON.stringify(LoginUsers[0]));
+                sessionStorage.setItem('user_info', loginParams);
+                sessionStorage.setItem('pc_token', data.data.pc_token);
+                this.$router.push({ path: '/page2' });
               }
+              // let { msg, code, user } = data;
+              // if (code !== 200) {
+              //   this.$message({
+              //     message: msg,
+              //     type: 'error'
+              //   });
+              // } else {
+              //     sessionStorage.setItem('user', JSON.stringify(user));
+              //   this.$router.push({ path: '/page1' });
+              // }
             });
           } else {
             console.log('error submit!!');

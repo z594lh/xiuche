@@ -27,7 +27,7 @@ export const batchRemoveCategory = params => { return axios.get(url.categoryBatc
 
 export const editCategory = params => { return axios.get(url.categoryEdit, { params: params }); };
 
-export const addCategory = params => { return axios.get(url.categoryAdd, { params: params }); };
+// export const addCategory = params => { return axios.get(url.categoryAdd, { params: params }); };
 
 //maintain
 export const getMaintainList = params => { return axios.get(url.maintainList, { params: params }); };
@@ -54,3 +54,8 @@ export const batchRemovePlan = params => { return axios.get(url.planBatchremove,
 export const editPlan = params => { return axios.get(url.planEdit, { params: params }); };
 
 export const addPlan = params => { return axios.get(url.planAdd, { params: params }); };
+
+/* 我的接口-----------------------------------------------------------------------------------------------------------*/
+export const requestLogin2 = params => { return axios.post(url.login2, params).then(res => res.data); };
+export const categoryList = params => { return axios.get(url.category, params).then(res => res.data); };
+export const addCategory = params => { return axios.post(url.addcategory, params).then(res => res.data); };
