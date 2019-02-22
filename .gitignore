@@ -4,5 +4,4 @@ node_modules/
 workspace.xml
 .idea/workspace.xml
 npm-debug.log
-.editorconfig
-dist/
+.editorconfig/
