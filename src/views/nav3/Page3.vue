@@ -5,7 +5,7 @@
 			<el-form :model="filters">
 				<el-row>
 					<el-col :span="8">
-						<el-form-item label-width="80px" label="执行时间" class="postInfo-container-item">
+						<el-form-item label-width="80px" label="创建时间" class="postInfo-container-item">
 							<el-date-picker
 									v-model="filters.executeTime"
 									align="right"
@@ -15,7 +15,12 @@
 							</el-date-picker>
 						</el-form-item>
 					</el-col>
-					<el-col :span="7">
+                    <el-table-column label="用户昵称">
+                        <template slot-scope="scope">
+                            <span v-html="brightenKeyword(scope.row.strTitle, filters.strTitle)" ></span>
+                        </template>
+                    </el-table-column>
+					<!-- <el-col :span="7">
 						<el-form-item label="天数">
 							<el-select v-model="filters.cycleDay" multiple placeholder="请选择">
 								<el-option
@@ -26,7 +31,7 @@
 								</el-option>
 							</el-select>
 						</el-form-item>
-					</el-col>
+					</el-col> -->
 					<el-col :span="6" style="margin-left: 20px;">
 						<el-form-item label="是否周期性:">
 							<el-radio-group v-model="filters.isCycle">

@@ -41,7 +41,7 @@ let routes = [
         leaf: true,//只有一个节点
         children: [
             // { path: '/main', component: Main, name: '主页', hidden: true },
-            { path: '/page1', component: Page1, name: '维护项' },
+            { path: '/page1', component: Page1, name: '文章' },
         ]
     },
     {
@@ -51,7 +51,7 @@ let routes = [
         iconCls: 'fa fa-calendar-check-o',
         leaf: true,//只有一个节点
         children: [
-            { path: '/page2', component: Page2, name: '维护计划' },
+            { path: '/page2', component: Page2, name: '文章类别' },
         ]
     },
     {
@@ -64,9 +64,9 @@ let routes = [
             {
                 path: '/page3',
                 component: Page3,
-                name: '维护历史',
+                name: '用户',
                 meta: {
-                    title: "维护历史"
+                    title: "用户"
                 }
             }
         ]

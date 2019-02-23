@@ -8,30 +8,12 @@
                         <el-row>
                             <el-col :xs="12" :sm="12" :md="12" :lg="5" style="margin-left: 12px;">
                                 <el-form-item>
-                                    <el-input v-model="filters.strPlanId" placeholder="计划ID"
-                                              style="width: 160px;"></el-input>
-                                </el-form-item>
-                            </el-col>
-                            <el-col :xs="10" :sm="10" :md="10" :lg="5">
-                                <el-form-item>
-                                    <el-input v-model="filters.strMaintainId" placeholder="设备类型ID"
-                                              style="width: 160px;"></el-input>
-                                </el-form-item>
-                            </el-col>
-                            <el-col :xs="12" :sm="12" :md="12" :lg="5" style="margin-left: 12px;">
-                                <el-form-item>
-                                    <el-input v-model="filters.equipmentCategory" placeholder="设备ID"
-                                              style="width: 160px;"></el-input>
-                                </el-form-item>
-                            </el-col>
-                            <el-col :xs="10" :sm="10" :md="10" :lg="5">
-                                <el-form-item>
-                                    <el-input v-model="filters.equipmentId" placeholder="维护项ID"
+                                    <el-input v-model="filters.strPlanId" placeholder="关键字"
                                               style="width: 160px;"></el-input>
                                 </el-form-item>
                             </el-col>
                             <el-col :xs="12" :sm="12" :md="12" :lg="14">
-                                <el-form-item label-width="80px" label="执行时间" class="postInfo-container-item">
+                                <el-form-item label-width="80px" label="创建时间" class="postInfo-container-item">
                                     <el-date-picker
                                             v-model="filters.executeTime"
                                             type="datetimerange"
@@ -89,15 +71,13 @@
                     </el-table-column>
                     <el-table-column type="index" width="60">
                     </el-table-column>
-                    <el-table-column prop="strTitle" label="维护项名称" width="120">
+                    <el-table-column prop="strTitle" label="类别名称" width="120">
                     </el-table-column>
                     <el-table-column prop="description" label="描述">
                     </el-table-column>
-                    <el-table-column prop="executeTime" label="执行时间" width="120" sortable>
+                    <el-table-column prop="executeTime" label="创建时间" width="120" sortable>
                     </el-table-column>
                     <el-table-column prop="isCycle" label="是否周期性" width="120" :formatter="formatCycle">
-                    </el-table-column>
-                    <el-table-column prop="cycleDay" label="剩余天数">
                     </el-table-column>
                     <el-table-column label="操作" width="150">
                         <template scope="scope">

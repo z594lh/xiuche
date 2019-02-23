@@ -4,14 +4,19 @@
         <el-form ref="form" :model="form" @submit.prevent="onSubmit" style="margin:10px;">
             <el-form :inline="true" :model="filters" class="demo-form-inline">
                 <el-row>
-                    <el-col :xs="12" :sm="12" :md="12" :lg="12" style="margin-left: 12px;">
-                        <el-form-item label="维护项">
-                            <el-input v-model="filters.strTitle" placeholder="维护项" style="width: 160px;"></el-input>
-                        </el-form-item>
+                   <el-col :span="12">
+                            <el-form-item label="文章类别">
+                                <el-select v-model="form.deviceNo" placeholder="全部">
+                                    <!--<el-option label="全部" value="all"></el-option>-->
+                                    <!--<el-option label="蓄电池一" value="1"></el-option>-->
+                                    <!--<el-option label="蓄电池二" value="2"></el-option>-->
+                                    <el-option v-for="item in form.deviceNoItems" :key="item" v-bind:value="item.value">{{item.text}}</el-option>
+                                </el-select>
+                            </el-form-item>
                     </el-col>
                     <el-col :xs="10" :sm="10" :md="10" :lg="10">
-                        <el-form-item label="维护内容">
-                            <el-input v-model="filters.strContent" placeholder="维护内容" style="width: 180px;"></el-input>
+                        <el-form-item label="文章内容">
+                            <el-input v-model="filters.strContent" placeholder="文章内容" style="width: 180px;"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :xs="24" :sm="24" :md="24" :lg="12">
@@ -64,14 +69,14 @@
                     </el-table-column>
                     <!--<el-table-column prop="strTitle" label="维护项名称">-->
                     <!--</el-table-column>-->
-                    <el-table-column label="维护项名称">
+                    <el-table-column label="文章名称">
                         <template slot-scope="scope">
                             <span v-html="brightenKeyword(scope.row.strTitle, filters.strTitle)" ></span>
                         </template>
                     </el-table-column>
                     <!--<el-table-column prop="strContent" label="维护内容">-->
                     <!--</el-table-column>-->
-                    <el-table-column label="维护内容">
+                    <el-table-column label="文章类别">
                         <template slot-scope="scope">
                             <span v-html="brightenKeyword(scope.row.strContent, filters.strContent)" ></span>
                         </template>
