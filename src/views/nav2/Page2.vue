@@ -540,7 +540,7 @@
                     }
 
                 categoryList(para).then((res) => {
-                    console.log(JSON.stringify(res.data));
+                    console.log(JSON.stringify(res));
                 });
                 
 

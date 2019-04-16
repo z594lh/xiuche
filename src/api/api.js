@@ -57,5 +57,7 @@ export const addPlan = params => { return axios.get(url.planAdd, { params: param
 
 /* 我的接口-----------------------------------------------------------------------------------------------------------*/
 export const requestLogin2 = params => { return axios.post(url.login2, params).then(res => res.data); };
-export const categoryList = params => { return axios.get(url.category, params).then(res => res.data); };
+// export const categoryList = params => { return axios.get(url.category, params).then(res => res.data); };
 export const addCategory = params => { return axios.post(url.addcategory, params).then(res => res.data); };
+
+export const categoryList = params => { return axios.get(url.category, { params: params }); };
